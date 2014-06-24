@@ -1,0 +1,32 @@
+section.triforce
+  nav
+    ul.nav.nav-pills.nav-stacked
+      li.active: a(href="#one" data-toggle="tab")
+        | One
+        span.pull-right: span.caret
+
+      li: a(href="#two" data-toggle="tab")
+        | Two
+        span.pull-right: span.caret
+
+      li: a(href="#three" data-toggle="tab")
+        | Three
+        span.pull-right: span.caret
+
+  article
+    .tab-content
+      #one.tab-pane.active
+        .panel.panel-default
+          .panel-heading One
+          .panel-body Panel Body
+          .panel-footer Footer
+
+      #two.tab-pane.
+        Two
+
+      #three.tab-pane.
+        Three
+
+  aside
+    .well.
+      Aside

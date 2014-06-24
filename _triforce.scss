@@ -1,0 +1,73 @@
+/**
+ *            /\
+ *           /  \
+ *          /    \
+ *         /      \
+ *        /        \
+ *       /__________\
+ *      /\__________/\
+ *     /  \        /  \
+ *    /    \      /    \
+ *   /      \    /      \
+ *  /        \  /        \
+ * /__________\/__________\
+ * \__________/\__________/
+ *
+ */
+
+.triforce {
+  @include center;
+
+  nav {
+    @include span(1/1);
+
+    @media (max-width: 767px) {
+      padding: 1em;
+    }
+
+    @media (min-width: 768px) {
+      @include span(2/6);
+    }
+
+    @media (min-width: 1200px) {
+      @include span(1/6);
+    }
+
+    li {
+      @media (max-width: 767px) {
+        display: none;
+      }
+
+      &.active {
+        display: block;
+      }
+    }
+
+    .pull-right {
+      @media (min-width: 768px) {
+        display: none;
+      }
+    }
+  }
+
+  article {
+    @include span(1/1);
+
+    @media (min-width: 768px) {
+      @include span(4/6);
+    }
+  }
+
+  aside {
+    @include span(1/1);
+
+    @media (min-width: 768px) {
+      @include span(4/6, $offset: 2/6);
+    }
+
+
+    @media (min-width: 1200px) {
+      @include span(1/6);
+    }
+  }
+}
