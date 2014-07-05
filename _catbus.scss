@@ -28,6 +28,10 @@ $catbus-top-gap: 56px;
       padding: 0 1em;
       text-transform: uppercase;
       text-align: left;
+
+      @media (max-width: $screen-md-max) {
+        display: none;
+      }
     }
 
     .demo {
@@ -60,8 +64,10 @@ $catbus-top-gap: 56px;
 
   &.catbus-left {
     .catbus-boarding & {
-      padding-left: 261px;
-      @include transition-delay(0);
+      @media (min-width: $screen-lg) {
+        padding-left: 261px;
+        @include transition-delay(0);
+      }
     }
 
     nav > button {
@@ -74,8 +80,10 @@ $catbus-top-gap: 56px;
 
   &.catbus-right {
     .catbus-boarding & {
-      padding-right: 261px;
-      @include transition-delay(0);
+      @media (min-width: $screen-lg) {
+        padding-right: 261px;
+        @include transition-delay(0);
+      }
     }
 
     nav {
@@ -94,5 +102,55 @@ $catbus-top-gap: 56px;
         @include transform(rotateZ(-90deg));
       }
     }
+  }
+
+  &.catbus-top {
+    article {
+      @include transition-property(transform);
+      @include transition-duration(.25s);
+      @include transition-delay(0);
+
+      .catbus-boarding & {
+        @media (min-width: $screen-lg) {
+          @include transform(translateY(108px));
+        }
+      }
+    }
+
+    nav {
+      @media (min-width: $screen-lg) {
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        height: 108px;
+        @include transform(translateY(-42px));
+
+        .catbus-boarding & {
+          @media (min-width: $screen-lg) {
+            @include transform(translateY(0));
+          }
+        }
+      }
+
+      & > button {
+        display: none;
+      }
+    }
+  }
+}
+
+.catbus__button {
+  @media (min-width: $screen-lg) {
+    width: 261px;
+
+    &.catbus-left,
+    &.catbus-right {
+      display: none;
+    }
+  }
+
+  .carrot {
+    float: right;
   }
 }

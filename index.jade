@@ -22,29 +22,27 @@ section.triforce
           .panel-body Panel Body
           .panel-footer Footer
 
-      #two.tab-pane.
-        Two
+      #two.tab-pane Two
 
-      #three.tab-pane.
-        Three
+      #three.tab-pane Three
 
   aside
-    .well.
-      Aside
+    .well Aside
 
 .navbar.navbar-default.navbar-static-top.wunderbar
   .container-fluid
+    a.navbar-brand.catbus__button.catbus-top(js-catbus-button).
+      Categories <sub><i class="glyphicon glyphicon-chevron-down carrot"></i></sub>
+
     a.navbar-brand.pull-right Assumed Navbar
 
 //- catbus
-section.catbus.catbus-left
+section.catbus.catbus-top
   nav
     button(js-catbus-button) Categories
-    .well.demo
-      | Catbus Nav
+    .well.demo Catbus Nav
 
   article
     hgroup
       h4 Catbus Title
-    .well.demo
-      | Catbus Body.  Search results go here.
+    .well.demo Catbus Body.  Search results go here.
