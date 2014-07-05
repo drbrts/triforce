@@ -1,0 +1,98 @@
+$catbus-top-gap: 56px;
+
+.catbus {
+  position: relative;
+  @include cf;
+  @include transition-property(padding);
+  @include transition-duration(0s);
+  @include transition-delay(.2s);
+
+  nav {
+    position: absolute;
+    width: 261px;
+    right: 100%;
+    top: $catbus-top-gap / 2;
+    z-index: 30;
+    @include transition-property(transform);
+    @include transition-duration(.25s);
+    @include transform-style(preserve-3d);
+
+    .catbus-boarding & {
+      @include transform(translateX(100%));
+    }
+
+    & > button {
+      position: absolute;
+      width: 75%;
+      line-height: 36px;
+      padding: 0 1em;
+      text-transform: uppercase;
+      text-align: left;
+    }
+
+    .demo {
+      min-height: 500px;
+    }
+  }
+
+  article {
+    @include center(none, 5%);
+    position: relative;
+    z-index: 20;
+    background: white;
+    padding-top: $catbus-top-gap;
+
+    hgroup {
+      position: absolute;
+      top: $catbus-top-gap / 2;
+      left: 5%;
+
+      h1, h2, h3, h4, h5, h6 {
+        margin: 0;
+      }
+    }
+
+    .demo {
+      min-height: 1000px;
+    }
+  }
+
+
+  &.catbus-left {
+    .catbus-boarding & {
+      padding-left: 261px;
+      @include transition-delay(0);
+    }
+
+    nav > button {
+      top: 0;
+      right: 0;
+      @include transform-origin(right top);
+      @include transform(rotateZ(-90deg));
+    }
+  }
+
+  &.catbus-right {
+    .catbus-boarding & {
+      padding-right: 261px;
+      @include transition-delay(0);
+    }
+
+    nav {
+      @media (min-width: $screen-lg) {
+        left: 100%;
+
+        .catbus-boarding & {
+          @include transform(translateX(-100%));
+        }
+      }
+
+      & > button {
+        bottom: 100%;
+        right: 100%;
+        @include transform-origin(right bottom);
+        @include transform(rotateZ(-90deg));
+      }
+    }
+  }
+}
