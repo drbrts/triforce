@@ -22,6 +22,7 @@ $catbus-top-gap: 56px;
     }
 
     & > button {
+      @include user-select(none);
       position: absolute;
       width: 75%;
       line-height: 36px;
@@ -31,6 +32,13 @@ $catbus-top-gap: 56px;
 
       @media (max-width: $screen-md-max) {
         display: none;
+      }
+
+      .carrot {
+        float: right;
+        line-height: inherit;
+        @include transition-property(transform);
+        @include transition-duration(.25s);
       }
     }
 
@@ -75,6 +83,12 @@ $catbus-top-gap: 56px;
       right: 0;
       @include transform-origin(right top);
       @include transform(rotateZ(-90deg));
+
+      .carrot {
+        .catbus-boarding & {
+          @include transform(rotateZ(180deg));
+        }
+      }
     }
   }
 
@@ -100,6 +114,14 @@ $catbus-top-gap: 56px;
         right: 100%;
         @include transform-origin(right bottom);
         @include transform(rotateZ(-90deg));
+
+        .carrot {
+          @include transform(rotateZ(-180deg));
+
+          .catbus-boarding & {
+            @include transform(rotateZ(-360deg));
+          }
+        }
       }
     }
   }
@@ -141,16 +163,27 @@ $catbus-top-gap: 56px;
 }
 
 .catbus__button {
+  @include user-select(none);
+
   @media (min-width: $screen-lg) {
     width: 261px;
+    border-right: 1px solid;
 
     &.catbus-left,
     &.catbus-right {
       display: none;
+      border-right-width: 0;
     }
   }
 
   .carrot {
     float: right;
+    line-height: inherit;
+    @include transition-property(transform);
+    @include transition-duration(.25s);
+
+    .catbus-boarding & {
+      @include transform(rotateZ(180deg));
+    }
   }
 }
