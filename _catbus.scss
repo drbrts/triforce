@@ -7,78 +7,70 @@ $catbus-top-gap: 56px;
   @include transition-duration(0s);
   @include transition-delay(.2s);
 
-  nav {
-    position: absolute;
-    width: 261px;
-    right: 100%;
-    top: $catbus-top-gap / 2;
-    z-index: 30;
-    @include transition-property(transform);
-    @include transition-duration(.25s);
-    @include transform-style(preserve-3d);
-
-    .catbus-boarding & {
-      @include transform(translateX(100%));
-    }
-
-    & > button {
-      @include user-select(none);
-      position: absolute;
-      width: 75%;
-      line-height: 36px;
-      padding: 0 1em;
-      text-transform: uppercase;
-      text-align: left;
-
-      @media (max-width: $screen-md-max) {
-        display: none;
-      }
-
-      .carrot {
-        float: right;
-        line-height: inherit;
-        @include transition-property(transform);
-        @include transition-duration(.25s);
-      }
-    }
-
-    .demo {
-      min-height: 500px;
-    }
-  }
-
-  article {
-    @include center(none, 5%);
-    position: relative;
-    z-index: 20;
-    background: white;
-    padding-top: $catbus-top-gap;
-
-    hgroup {
-      position: absolute;
-      top: $catbus-top-gap / 2;
-      left: 5%;
-
-      h1, h2, h3, h4, h5, h6 {
-        margin: 0;
-      }
-    }
-
-    .demo {
-      min-height: 1000px;
-    }
-  }
-
-
-  &.catbus-left {
+  &.catbus--left {
     .catbus-boarding & {
       @media (min-width: $screen-lg) {
         padding-left: 261px;
         @include transition-delay(0);
       }
     }
+  }
 
-    nav > button {
+  &.catbus--right {
+    .catbus-boarding & {
+      @media (min-width: $screen-lg) {
+        padding-right: 261px;
+        @include transition-delay(0);
+      }
+    }
+  }
+}
+
+.catbus__nav {
+  position: absolute;
+  width: 261px;
+  right: 100%;
+  top: $catbus-top-gap / 2;
+  z-index: 30;
+  @include transition-property(transform);
+  @include transition-duration(.25s);
+  @include transform-style(preserve-3d);
+
+  .catbus-boarding & {
+    @include transform(translateX(100%));
+  }
+
+  & > button {
+    @include user-select(none);
+    position: absolute;
+    width: 75%;
+    line-height: 36px;
+    padding: 0 1em;
+    text-transform: uppercase;
+    text-align: left;
+
+    @media (max-width: $screen-md-max) {
+      display: none;
+    }
+
+    .carrot {
+      float: right;
+      line-height: inherit;
+      @include transition-property(transform);
+      @include transition-duration(.25s);
+    }
+  }
+
+  .catbus--left & {
+    @media (min-width: $screen-lg) {
+      right: 100%;
+
+      .catbus-boarding & {
+        @include transform(translateX(100%));
+      }
+    }
+
+    & > button {
       top: 0;
       right: 0;
       @include transform-origin(right top);
@@ -92,98 +84,133 @@ $catbus-top-gap: 56px;
     }
   }
 
-  &.catbus-right {
-    .catbus-boarding & {
-      @media (min-width: $screen-lg) {
-        padding-right: 261px;
-        @include transition-delay(0);
+  .catbus--right & {
+    @media (min-width: $screen-lg) {
+      left: 100%;
+
+      .catbus-boarding & {
+        @include transform(translateX(-100%));
       }
     }
 
-    nav {
-      @media (min-width: $screen-lg) {
-        left: 100%;
+    & > button {
+      bottom: 100%;
+      right: 100%;
+      @include transform-origin(right bottom);
+      @include transform(rotateZ(-90deg));
+
+      .carrot {
+        @include transform(rotateZ(-180deg));
 
         .catbus-boarding & {
-          @include transform(translateX(-100%));
-        }
-      }
-
-      & > button {
-        bottom: 100%;
-        right: 100%;
-        @include transform-origin(right bottom);
-        @include transform(rotateZ(-90deg));
-
-        .carrot {
-          @include transform(rotateZ(-180deg));
-
-          .catbus-boarding & {
-            @include transform(rotateZ(-360deg));
-          }
+          @include transform(rotateZ(-360deg));
         }
       }
     }
   }
 
-  &.catbus-top {
-    article {
-      @include transition-property(transform);
-      @include transition-duration(.25s);
-      @include transition-delay(0);
+  .catbus--top & {
+    @media (min-width: $screen-lg) {
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      height: 108px;
+      @include transform(translateY(-42px));
 
       .catbus-boarding & {
         @media (min-width: $screen-lg) {
-          @include transform(translateY(108px));
+          @include transform(translateY(0));
         }
       }
     }
 
-    nav {
+    & > button {
+      display: none;
+    }
+  }
+}
+
+.catbus__section {
+  @include center(none);
+  position: relative;
+  z-index: 20;
+  background: white;
+  padding-top: $catbus-top-gap;
+  padding-bottom: $catbus-top-gap;
+
+  @media (min-width: $screen-md) {
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+  }
+
+  @media (min-width: $screen-lg) {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .catbus--top & {
+    @include transition-property(transform);
+    @include transition-duration(.25s);
+    @include transition-delay(0);
+
+    .catbus-boarding & {
       @media (min-width: $screen-lg) {
-        width: 100%;
-        top: 0;
-        left: 0;
-        z-index: 10;
-        height: 108px;
-        @include transform(translateY(-42px));
-
-        .catbus-boarding & {
-          @media (min-width: $screen-lg) {
-            @include transform(translateY(0));
-          }
-        }
-      }
-
-      & > button {
-        display: none;
+        @include transform(translateY(108px));
       }
     }
+  }
+}
+
+.catbus__article {
+  position: relative;
+
+  & > header {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+
+    h1, h2, h3, h4, h5, h6 {
+      margin: 0;
+    }
+  }
+
+  .demo {
+    min-height: 1000px;
   }
 }
 
 .catbus__button {
   @include user-select(none);
 
-  @media (min-width: $screen-lg) {
+  @media (min-width: $screen-sm) {
     width: 261px;
     border-right: 1px solid;
+  }
 
-    &.catbus-left,
-    &.catbus-right {
+  @media (min-width: $screen-lg) {
+    &.catbus--left,
+    &.catbus--right {
       display: none;
       border-right-width: 0;
     }
   }
 
   .carrot {
-    float: right;
     line-height: inherit;
     @include transition-property(transform);
     @include transition-duration(.25s);
 
+    @media (max-width: $screen-xs-max) {
+      display: none;
+    }
+
+    @media (min-width: $screen-sm) {
+      float: right;
+    }
+
     .catbus-boarding & {
-      @include transform(rotateZ(180deg));
+      @include transform(rotateZ(-180deg));
     }
   }
 }
